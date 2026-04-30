@@ -14,4 +14,4 @@ public class RegistrationController {
     public boolean register(User user, Event event) {
         return registrationService.registerForEvent(user, event);
     }
-}
+} 
