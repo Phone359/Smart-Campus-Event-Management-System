@@ -1,10 +1,10 @@
+package repository;
+
 public class DatabaseConnection {
 
     private static DatabaseConnection instance;
 
-    private DatabaseConnection() {
-        // simulate database connection
-    }
+    private DatabaseConnection() {}
 
     public static DatabaseConnection getInstance() {
         if (instance == null) {

@@ -1,3 +1,5 @@
+package model;
+
 public class AuditLog {
     private String username;
     private String action;
@@ -10,6 +12,8 @@ public class AuditLog {
     }
 
     public void log() {
-        System.out.println("User: " + username + " | Action: " + action + " | Time: " + timestamp);
+        System.out.println("User: " + username + 
+                           " | Action: " + action + 
+                           " | Time: " + timestamp);
     }
 }
