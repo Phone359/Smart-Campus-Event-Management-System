@@ -1,3 +1,5 @@
+import controller.AuthenticationController;
+import model.User; 
 public class AuthenticationTest {
     public static void main(String[] args) {
         AuthenticationController auth = new AuthenticationController();

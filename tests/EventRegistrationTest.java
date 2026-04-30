@@ -1,3 +1,7 @@
+import controllers.RegistrationController;
+import models.Event;
+import models.User;
+
 public class EventRegistrationTest {
     public static void main(String[] args) {
         User student = new User("student1", "pass", "STUDENT");
