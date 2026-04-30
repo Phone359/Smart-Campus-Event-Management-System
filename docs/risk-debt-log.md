@@ -10,7 +10,7 @@
 
 | R2 | Event registration may allow duplicate registration records | Medium | Add duplicate checking before saving a registration | Mitigated | 
 
-| R3 | Database connection may fail during system use | High | Add retry mechanism, fallback error message, and logging system | In Progress | 
+| R3 | Database connection may fail during system utilizing | High | Add retry mechanism, fallback error message, and logging system | In Progress | 
 
 ## Technical Debt Log 
 
