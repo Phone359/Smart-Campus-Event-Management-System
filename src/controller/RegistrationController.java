@@ -5,6 +5,7 @@ import model.Event;
 import service.RegistrationService;
 
 public class RegistrationController {
+
     private RegistrationService registrationService;
 
     public RegistrationController() {

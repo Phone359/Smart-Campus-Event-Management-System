@@ -1,3 +1,5 @@
+package model;
+
 public class Event {
     private String title;
     private int capacity;
