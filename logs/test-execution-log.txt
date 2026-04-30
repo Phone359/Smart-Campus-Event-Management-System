@@ -1,0 +1,42 @@
+Test Execution Log
+Project: Smart Campus Event Management System
+Tester: Poe Ei Ei Khaing
+Date: 2026-04-27
+
+Coverage Types: Happy Path, Boundary Case, Negative Case
+
+1. Authentication Test - Happy Path
+Input: username = admin, password = 1234
+Expected Result: Login successful
+Actual Result: Login successful
+Status: Passed
+
+2. Authentication Test - Negative Case
+Input: username = admin, password = wrong
+Expected Result: Invalid username or password
+Actual Result: Invalid username or password
+Status: Passed
+
+3. Authentication Test - Boundary Case
+Input: username = empty, password = 1234
+Expected Result: Please enter both username and password
+Actual Result: Please enter both username and password
+Status: Passed
+
+4. Registration Test - Happy Path
+Input: student1 registers for Tech Workshop
+Expected Result: Registration successful
+Actual Result: Registration successful
+Status: Passed
+
+5. Registration Test - Negative Case
+Input: student1 registers again
+Expected Result: Already registered message
+Actual Result: You are already registered for this event
+Status: Passed
+
+6. Registration Test - Boundary Case
+Input: student2 registers when event is full
+Expected Result: Event full message
+Actual Result: This event is already full. Please choose another event
+Status: Passed

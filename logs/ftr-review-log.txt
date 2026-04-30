@@ -1,0 +1,23 @@
+Formal Technical Review Log
+Project: Smart Campus Event Management System
+Review Type: FTR
+Date: 2026-04-27
+Moderator: Ricardo Paul
+Reviewer: Poe Ei Ei Khaing
+Developer: Phone Pyae Kyaw
+Recorder: Phyoe Kyaw Zin
+
+Review Scope:
+AuthenticationController, RegistrationService, DatabaseConnection, and test logs.
+
+Issues Found:
+1. AuthenticationController needed clearer empty input validation.
+2. RegistrationService needed duplicate checking before increasing event count.
+3. DatabaseConnection needed a more humanized error message for connection failure.
+4. Risk log needed clearer technical debt estimate.
+
+Consensus Decision:
+Rework, then Accept.
+
+Final Result:
+After the required corrections were completed, the reviewed modules were accepted for testing and integration.
