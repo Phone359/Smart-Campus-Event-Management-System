@@ -1,25 +1,19 @@
 package model;
-import java.time.LocalDateTime;
 
 public class Registration {
-    private Long id;
-    // private User user;   
-    // private Event event; 
-    private LocalDateTime registrationDate;
+    private String username;
+    private String eventTitle;
 
-
-    public Registration() {
-        this.registrationDate = LocalDateTime.now();
+    public Registration(String username, String eventTitle) {
+        this.username = username;
+        this.eventTitle = eventTitle;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getUsername() {
+        return username;
+    }
 
-    // public User getUser() { return user; }
-    // public void setUser(User user) { this.user = user; }
-
-    // public Event getEvent() { return event; }
-    // public void setEvent(Event event) { this.event = event; }
-
-    public LocalDateTime getRegistrationDate() { return registrationDate; }
+    public String getEventTitle() {
+        return eventTitle;
+    }
 }
