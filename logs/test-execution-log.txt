@@ -1,0 +1,28 @@
+Test Execution Log
+Project: Smart Campus Event Management System
+Tester: Poe Ei Ei Khaing
+Date: 2026-04-27
+
+1. Authentication Test
+Input: username = admin, password = 1234
+Result: Login successful
+
+2. Authentication Test
+Input: username = admin, password = wrong
+Result: Invalid username or password
+
+3. Authentication Test
+Input: username = empty, password = 1234
+Result: Please enter both username and password
+
+4. Registration Test
+Input: student1 registers for Tech Workshop
+Result: Registration successful
+
+5. Registration Test
+Input: student1 registers again
+Result: You are already registered for this event
+
+6. Registration Test
+Input: student2 registers when event is full
+Result: Event full
