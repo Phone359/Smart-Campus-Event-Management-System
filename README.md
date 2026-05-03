@@ -18,6 +18,15 @@ This system is designed to manage campus events in a centralized and efficient w
 ## Current Prototype Scope
 The submitted prototype demonstrates the core defense logic for authentication, authorization, event creation, registration capacity control, duplicate registration prevention, and audit logging. Data is stored in memory for classroom demonstration.
 
+## Frontend Prototype
+The React/Vite frontend prototype is in the `frontend` folder. It mirrors the report logic with login, RBAC, event creation, registration, capacity checks, and an audit trail.
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
 ## How to Run Tests
 From the project root:
 

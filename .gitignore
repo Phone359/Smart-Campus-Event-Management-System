@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 out/
+node_modules/
+.npm-cache/
+.npm-global/
+dist/
 
 # Log file
 *.log
