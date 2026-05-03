@@ -1,6 +1,6 @@
-import controllers.RegistrationController;
-import models.Event;
-import models.User;
+import controller.RegistrationController;
+import model.Event;
+import model.User;
 
 public class EventRegistrationTest {
     public static void main(String[] args) {
@@ -10,13 +10,26 @@ public class EventRegistrationTest {
         RegistrationController controller = new RegistrationController();
 
         System.out.println("Test 1: Happy Path Registration");
-        controller.register(student, event);
+        assertEquals("Registration successful", controller.register(student, event));
 
         System.out.println("Test 2: Negative Case - Duplicate Registration");
-        controller.register(student, event);
+        assertEquals("You are already registered for this event", controller.register(student, event));
 
         System.out.println("Test 3: Boundary Case - Full Event");
         User student2 = new User("student2", "pass", "STUDENT");
-        controller.register(student2, event);
+        assertEquals("This event is already full. Please choose another event", controller.register(student2, event));
+
+        System.out.println("Test 4: RBAC Negative Case - Admin Cannot Register");
+        User admin = new User("admin", "1234", "ADMIN");
+        Event secondEvent = new Event("Research Forum", 5);
+        assertEquals("Access denied: only students can register for events", controller.register(admin, secondEvent));
+
+        System.out.println("Event registration tests passed");
+    }
+
+    private static void assertEquals(String expected, String actual) {
+        if (!expected.equals(actual)) {
+            throw new AssertionError("Expected: " + expected + " but got: " + actual);
+        }
     }
 }

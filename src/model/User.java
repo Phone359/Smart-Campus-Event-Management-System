@@ -1,11 +1,17 @@
 package model;
 
+import java.util.Objects;
+
 public class User {
-    private String username;
-    private String password;
-    private String role;
+    private final String username;
+    private final String password;
+    private final Role role;
 
     public User(String username, String password, String role) {
+        this(username, password, Role.valueOf(role.toUpperCase()));
+    }
+
+    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -15,11 +21,11 @@ public class User {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public Role getRole() {
+        return role;
     }
 
-    public String getRole() {
-        return role;
+    public boolean matchesPassword(String passwordAttempt) {
+        return Objects.equals(password, passwordAttempt);
     }
 }

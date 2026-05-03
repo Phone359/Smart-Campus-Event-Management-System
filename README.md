@@ -15,6 +15,22 @@ This system is designed to manage campus events in a centralized and efficient w
 - GitHub (Version Control)
 - Layered Architecture (N-tier)
 
+## Current Prototype Scope
+The submitted prototype demonstrates the core defense logic for authentication, authorization, event creation, registration capacity control, duplicate registration prevention, and audit logging. Data is stored in memory for classroom demonstration.
+
+## How to Run Tests
+From the project root:
+
+```powershell
+New-Item -ItemType Directory -Force out
+javac -d out (Get-ChildItem src,tests -Recurse -Filter *.java).FullName
+java -cp out AuthenticationTest
+java -cp out EventRegistrationTest
+java -cp out EventManagementTest
+```
+
+The tests cover happy path, negative, boundary, and RBAC cases for Report 3 evidence.
+
 ## Team Members
 - Ricardo Paul (Project Manager)
 - Praweechai Thararuenroeng (System Architect)

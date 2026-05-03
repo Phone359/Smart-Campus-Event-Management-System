@@ -1,47 +1,31 @@
 package controller;
 
 import model.User;
-import model.AuditLog;
+import repository.AuditLogRepository;
+import repository.UserRepository;
+import service.AuthenticationService;
 
 public class AuthenticationController {
+    private final AuthenticationService authenticationService;
 
-    public boolean login(User user, String inputUsername, String inputPassword) {
+    public AuthenticationController() {
+        UserRepository users = new UserRepository();
+        users.save(new User("admin", "1234", "ADMIN"));
+        users.save(new User("student1", "pass", "STUDENT"));
+        this.authenticationService = new AuthenticationService(users, new AuditLogRepository());
+    }
 
-        // Guard Clauses
-        if (inputUsername == null || inputPassword == null) {
-            System.out.println("Username or password cannot be empty.");
-            return false;
-        }
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
-        if (inputUsername.isEmpty() || inputPassword.isEmpty()) {
-            System.out.println("Please enter both username and password.");
-            return false;
-        }
+    public String login(User expectedUser, String username, String password) {
+        return login(username, password);
+    }
 
-        // Validation
-        if (user.getUsername().equals(inputUsername) &&
-            user.getPassword().equals(inputPassword)) {
-
-            if (user.getRole().equals("ADMIN") ||
-                user.getRole().equals("STUDENT") ||
-                user.getRole().equals("FACULTY")) {
-
-                AuditLog log = new AuditLog(
-                    user.getUsername(),
-                    "Login Successful",
-                    java.time.LocalDateTime.now().toString()
-                );
-                log.log();
-
-                System.out.println("Login successful.");
-                return true;
-            } else {
-                System.out.println("Access denied. Invalid role.");
-                return false;
-            }
-        }
-
-        System.out.println("Invalid username or password.");
-        return false;
+    public String login(String username, String password) {
+        String result = authenticationService.login(username, password);
+        System.out.println(result);
+        return result;
     }
 }

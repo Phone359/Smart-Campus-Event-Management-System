@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         User user = new User("admin", "1234", "ADMIN");
+        User student = new User("student1", "pass", "STUDENT");
 
         AuthenticationController auth = new AuthenticationController();
         auth.login(user, "admin", "1234");
@@ -16,6 +17,6 @@ public class Main {
         Event event = new Event("Tech Workshop", 1);
         RegistrationController reg = new RegistrationController();
 
-        reg.register(user, event);
+        reg.register(student, event);
     }
 }

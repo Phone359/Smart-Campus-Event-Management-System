@@ -1,47 +1,42 @@
 package service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import model.User;
 import model.Event;
-import model.Registration;
+import model.User;
+import repository.AuditLogRepository;
 
 public class RegistrationService {
+    private final AuditLogRepository auditLog;
+    private final AuthorizationService authorization;
 
-    private List<Registration> registrations = new ArrayList<>();
-
-    public boolean registerForEvent(User user, Event event) {
-
-        if (user == null || event == null) {
-            System.out.println("Registration failed. Missing information.");
-            return false;
-        }
-
-        if (event.isFull()) {
-            System.out.println("This event is already full. Please choose another event.");
-            return false;
-        }
-
-        if (isAlreadyRegistered(user, event)) {
-            System.out.println("You are already registered for this event.");
-            return false;
-        }
-
-        event.register();
-        registrations.add(new Registration(user.getUsername(), event.getTitle()));
-
-        System.out.println("Registration successful.");
-        return true;
+    public RegistrationService(AuditLogRepository auditLog, AuthorizationService authorization) {
+        this.auditLog = auditLog;
+        this.authorization = authorization;
     }
 
-    private boolean isAlreadyRegistered(User user, Event event) {
-        for (Registration reg : registrations) {
-            if (reg.getUsername().equals(user.getUsername()) &&
-                reg.getEventTitle().equals(event.getTitle())) {
-                return true;
-            }
+    public String register(User user, Event event) {
+        if (!authorization.canRegisterForEvent(user)) {
+            auditLog.record(actorName(user), "REGISTER_EVENT", "Access denied");
+            return "Access denied: only students can register for events";
         }
-        return false;
+        if (event == null) {
+            auditLog.record(user.getUsername(), "REGISTER_EVENT", "Event not found");
+            return "Event not found";
+        }
+        if (event.isRegistered(user)) {
+            auditLog.record(user.getUsername(), "REGISTER_EVENT", "Duplicate registration");
+            return "You are already registered for this event";
+        }
+        if (event.isFull()) {
+            auditLog.record(user.getUsername(), "REGISTER_EVENT", "Event full");
+            return "This event is already full. Please choose another event";
+        }
+
+        event.register(user);
+        auditLog.record(user.getUsername(), "REGISTER_EVENT", "Registration successful: " + event.getTitle());
+        return "Registration successful";
+    }
+
+    private String actorName(User user) {
+        return user == null ? "anonymous" : user.getUsername();
     }
 }

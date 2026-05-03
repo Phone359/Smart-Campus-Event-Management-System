@@ -1,5 +1,6 @@
 import controller.AuthenticationController;
-import model.User; 
+import model.User;
+
 public class AuthenticationTest {
     public static void main(String[] args) {
         AuthenticationController auth = new AuthenticationController();
@@ -7,12 +8,20 @@ public class AuthenticationTest {
         User validUser = new User("admin", "1234", "ADMIN");
 
         System.out.println("Test 1: Happy Path Login");
-        auth.login(validUser, "admin", "1234");
+        assertEquals("Login successful", auth.login(validUser, "admin", "1234"));
 
         System.out.println("Test 2: Negative Login - Wrong Password");
-        auth.login(validUser, "admin", "wrong");
+        assertEquals("Invalid username or password", auth.login(validUser, "admin", "wrong"));
 
         System.out.println("Test 3: Boundary Login - Empty Username");
-        auth.login(validUser, "", "1234");
+        assertEquals("Please enter both username and password", auth.login(validUser, "", "1234"));
+
+        System.out.println("Authentication tests passed");
+    }
+
+    private static void assertEquals(String expected, String actual) {
+        if (!expected.equals(actual)) {
+            throw new AssertionError("Expected: " + expected + " but got: " + actual);
+        }
     }
 }

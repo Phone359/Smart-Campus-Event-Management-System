@@ -40,3 +40,27 @@ Input: student2 registers when event is full
 Expected Result: Event full message
 Actual Result: This event is already full. Please choose another event
 Status: Passed
+
+7. Registration Test - RBAC Negative Case
+Input: admin attempts to register for student event
+Expected Result: Access denied message
+Actual Result: Access denied: only students can register for events
+Status: Passed
+
+8. Event Management Test - Happy Path
+Input: organizer creates AI Seminar
+Expected Result: Event created successfully
+Actual Result: Event created successfully
+Status: Passed
+
+9. Event Management Test - Negative Case
+Input: organizer creates duplicate AI Seminar
+Expected Result: Event already exists
+Actual Result: Event already exists
+Status: Passed
+
+10. Event Management Test - RBAC Negative Case
+Input: student attempts to create event
+Expected Result: Access denied message
+Actual Result: Access denied: only admins or organizers can create events
+Status: Passed
