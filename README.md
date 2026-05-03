@@ -31,6 +31,15 @@ java -cp out EventManagementTest
 
 The tests cover happy path, negative, boundary, and RBAC cases for Report 3 evidence.
 
+Important: run Java commands from the project root folder, not from `src\app`. Because the code uses packages, compiling only `Main.java` from inside `src\app` will not find `controller`, `model`, `service`, or `repository` classes.
+
+For an easier option on Windows PowerShell:
+
+```powershell
+.\run-demo.ps1
+.\run-tests.ps1
+```
+
 ## Team Members
 - Ricardo Paul (Project Manager)
 - Praweechai Thararuenroeng (System Architect)
